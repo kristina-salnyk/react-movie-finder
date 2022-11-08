@@ -1,8 +1,4 @@
-import { useParams } from 'react-router-dom';
-
 const MovieDetails = () => {
-  const { id } = useParams();
-  // const product = getProductById(id);
   return (
     <main>
       <img src="https://via.placeholder.com/960x240" alt="" />
