@@ -2,12 +2,10 @@ import { Heading } from './Home.styled';
 import { getTrendingMovies } from '../../utils/api/getTrendingMovies';
 import MoviesList from '../../components/MoviesList/MoviesList';
 import { useEffect, useState } from 'react';
-import { useGenres } from '../../contexts/GenresContext';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [error, setError] = useState();
-  const { genres } = useGenres();
 
   useEffect(() => {
     (async () => {
@@ -18,7 +16,7 @@ const Home = () => {
         setError(error);
       }
     })();
-  }, [genres]);
+  }, []);
 
   return (
     <main>

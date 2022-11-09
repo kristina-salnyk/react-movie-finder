@@ -28,7 +28,7 @@ export const GenresProvider = ({ children }) => {
   };
 
   return (
-    <GenresContext.Provider value={{ genres, getGenresByIds }}>
+    <GenresContext.Provider value={{ getGenresByIds }}>
       {children}
     </GenresContext.Provider>
   );
