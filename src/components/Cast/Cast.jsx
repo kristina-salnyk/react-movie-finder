@@ -14,7 +14,6 @@ const Cast = () => {
       try {
         const data = await getMovieCredits(movieId);
         setCast(data.cast);
-        console.log(data.cast);
       } catch (error) {
         setError(error);
       }
@@ -26,7 +25,7 @@ const Cast = () => {
       {cast.length > 0 && (
         <CastList>
           {cast.map(item => (
-            <li>
+            <li key={item.id}>
               <CastItem
                 profilePath={item['profile_path']}
                 name={item.name}

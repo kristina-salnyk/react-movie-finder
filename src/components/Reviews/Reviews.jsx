@@ -1,20 +1,41 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getMovieReviews } from '../../utils/api/getMovieReviews';
+import { Description, ReviewItem, ReviewsList, Title } from './Reviews.styled';
+
 const Reviews = () => {
+  const { movieId } = useParams();
+  const [reviews, setReviews] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getMovieReviews(movieId);
+        console.log(data);
+        setReviews(data.results);
+      } catch (error) {
+        setError(error);
+      }
+    })();
+  }, [movieId]);
+
   return (
     <section>
-      <h2>Our reviews</h2>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut, nesciunt
-        veniam. Excepturi itaque, voluptates fugiat perspiciatis quo saepe! Iste
-        eaque porro eveniet error dicta, modi ipsum hic quis minima inventore.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quaerat
-        illum excepturi odit doloremque, vitae quasi corporis commodi nisi quae
-        perspiciatis amet consectetur reprehenderit inventore laborum facilis
-        quia mollitia exercitationem eaque rerum dignissimos maiores, quos iure
-        blanditiis. Dolorem, nam? Aliquid sequi molestias vel, tenetur maxime
-        pariatur? Molestiae libero cum quidem.
-      </p>
+      {reviews.length > 0 && (
+        <ReviewsList>
+          {reviews.map(item => (
+            <li key={item.id}>
+              <ReviewItem>
+                <Title>Author: {item.author}</Title>
+                <Description>{item.content}</Description>
+              </ReviewItem>
+            </li>
+          ))}
+        </ReviewsList>
+      )}
+
+      {error && <p>Something went wrong. Try again later.</p>}
     </section>
   );
 };

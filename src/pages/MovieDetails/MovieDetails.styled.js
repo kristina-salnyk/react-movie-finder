@@ -62,6 +62,7 @@ export const Link = styled(NavLink)`
   text-decoration: none;
   text-align: center;
   width: 80px;
+  border: 1px solid #eae9e9;
 
   &.active {
     box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0,
