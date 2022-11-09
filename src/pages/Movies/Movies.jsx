@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import { getSearchingMovie } from '../../utils/api/getSearchingMovie';
 import MoviesList from '../../components/MoviesList/MoviesList';
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [searchQuery, setSearchQuery] = useState('');
   const [searchingMovies, setSearchingMovies] = useState([]);
   const [error, setError] = useState();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('query') ?? '';
 
   useEffect(() => {
     if (searchQuery.trim() === '') return;
@@ -20,6 +22,11 @@ const Movies = () => {
       }
     })();
   }, [searchQuery]);
+
+  const setSearchQuery = query => {
+    const newParams = query !== '' ? { query } : {};
+    setSearchParams(newParams);
+  };
 
   return (
     <main>
