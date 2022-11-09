@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.section`
   padding: 0 20px;
@@ -47,5 +48,23 @@ export const Overview = styled.div`
 
   > p {
     margin: 15px 0 40px;
+  }
+`;
+
+export const Tabs = styled.div`
+  display: flex;
+`;
+
+export const Link = styled(NavLink)`
+  padding: 10px 0;
+  color: black;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  width: 80px;
+
+  &.active {
+    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0,
+      rgba(60, 64, 67, 0.15) 0 2px 6px 2px;
   }
 `;

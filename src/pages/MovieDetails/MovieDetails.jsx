@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, Outlet } from 'react-router-dom';
 import { getMovieById } from '../../utils/api/getMovieById';
 import { useEffect, useState } from 'react';
 import {
@@ -8,6 +8,8 @@ import {
   Overview,
   Poster,
   Title,
+  Link,
+  Tabs,
 } from './MovieDetails.styled';
 import imageNotFound from '../../images/image-not-found.png';
 import { BsArrowLeft } from 'react-icons/bs';
@@ -40,7 +42,7 @@ const MovieDetails = () => {
     : imageNotFound;
   const year = new Date(movie['release_date']).getFullYear();
   const score = (Number(movie['vote_average']) * 10).toFixed();
-  const genres = movie['genres'].map(genre => genre.name).join(' ');
+  const genres = movie['genres'].map(genre => genre.name).join(', ');
 
   return (
     <main>
@@ -65,10 +67,29 @@ const MovieDetails = () => {
             <h2>Overview</h2>
             <p>{movie['overview']}</p>
 
-            <h2>Genres</h2>
-            <p>{genres}</p>
+            {genres !== '' && (
+              <>
+                <h2>Genres</h2>
+                <p>{genres}</p>
+              </>
+            )}
           </Overview>
         </Description>
+
+        <hr />
+
+        <div>
+          <h2>Additional information</h2>
+          <Tabs>
+            <Link to="cast" state={{ from: backLinkHref }}>
+              Cast
+            </Link>
+            <Link to="reviews" state={{ from: backLinkHref }}>
+              Reviews
+            </Link>
+          </Tabs>
+          <Outlet />
+        </div>
       </Container>
 
       {error && <p>Something went wrong. Try again later.</p>}

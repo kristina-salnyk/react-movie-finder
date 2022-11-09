@@ -6,6 +6,8 @@ export const REQUEST_URL = {
   SEARCH: '/search/movie',
   MOVIE: '/movie',
   GENRES: '/genre/movie/list',
+  CREDITS: '/credits',
+  REVIEWS: '/reviews',
 };
 
 export const REQUEST_CONFIGS = {
