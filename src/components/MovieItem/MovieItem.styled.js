@@ -22,11 +22,11 @@ export const Title = styled.h2`
 `;
 
 export const Description = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   font-style: italic;
   color: black;
 
   > p {
-    margin: 5px 0;
+    margin: 10px 0;
   }
 `;

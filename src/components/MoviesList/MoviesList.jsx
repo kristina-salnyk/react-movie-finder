@@ -1,7 +1,7 @@
 import { Container, ListItem } from './MoviesList.styled';
 import MovieItem from '../MovieItem/MovieItem';
 
-const MoviesList = ({ items, getGenresByIds }) => {
+const MoviesList = ({ items }) => {
   return (
     <Container>
       {items.map(item => (
@@ -12,7 +12,6 @@ const MoviesList = ({ items, getGenresByIds }) => {
             title={item['original_title']}
             release={item['release_date']}
             genresIds={item['genre_ids']}
-            getGenresByIds={getGenresByIds}
           />
         </ListItem>
       ))}

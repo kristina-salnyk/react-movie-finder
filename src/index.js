@@ -5,12 +5,15 @@ import { App } from 'components/App';
 import './index.css';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './theme';
+import { GenresProvider } from './contexts/GenresContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter basename="/goit-react-hw-05-movies">
       <ThemeProvider theme={theme}>
-        <App />
+        <GenresProvider>
+          <App />
+        </GenresProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
