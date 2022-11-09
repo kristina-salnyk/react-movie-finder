@@ -1,13 +1,24 @@
-import { useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from '../../utils/api/getMovieById';
 import { useEffect, useState } from 'react';
-import { Description, Overview, Poster, Title } from './MovieDetails.styled';
+import {
+  Container,
+  Controls,
+  Description,
+  Overview,
+  Poster,
+  Title,
+} from './MovieDetails.styled';
 import imageNotFound from '../../images/image-not-found.png';
+import { BsArrowLeft } from 'react-icons/bs';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
+
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
 
   useEffect(() => {
     (async () => {
@@ -33,22 +44,32 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <div>
+      <Container>
+        <Controls>
+          <Link to={backLinkHref}>
+            <BsArrowLeft /> Go back
+          </Link>
+        </Controls>
+
         <Description>
           <Poster src={poster} alt={movie['original_title']} />
+
           <Overview>
             <Title>
               {movie['original_title']}
               {!isNaN(year) && <span> ({year})</span>}
             </Title>
+
             <p>User score: {score}%</p>
+
             <h2>Overview</h2>
             <p>{movie['overview']}</p>
+
             <h2>Genres</h2>
             <p>{genres}</p>
           </Overview>
         </Description>
-      </div>
+      </Container>
 
       {error && <p>Something went wrong. Try again later.</p>}
     </main>
