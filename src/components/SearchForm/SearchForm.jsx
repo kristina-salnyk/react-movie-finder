@@ -1,5 +1,6 @@
 import { Form, Button, ButtonLabel, Input } from './SearchForm.styled';
 import { BiSearchAlt2 } from 'react-icons/bi';
+import PropTypes from 'prop-types';
 
 const SearchForm = ({ searchQuery, onSubmit }) => {
   const handleFormSubmit = event => {
@@ -28,3 +29,8 @@ const SearchForm = ({ searchQuery, onSubmit }) => {
 };
 
 export default SearchForm;
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  searchQuery: PropTypes.string.isRequired,
+};

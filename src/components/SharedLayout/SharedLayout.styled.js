@@ -4,26 +4,25 @@ import { NavLink } from 'react-router-dom';
 export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
 `;
 
 export const Header = styled.header`
-  padding: 10px;
-  margin-bottom: 15px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  padding: ${({ theme }) => theme.space[3]}px;
+  margin-bottom: ${({ theme }) => theme.space[4]}px;
+  box-shadow: ${({ theme }) => theme.shadows[0]};
 
-  > nav {
+  & > nav {
     display: flex;
   }
 `;
 
 export const Link = styled(NavLink)`
-  padding: 15px 15px;
+  padding: ${({ theme }) => theme.space[4]}px;
   color: black;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
   text-decoration: none;
 
   &.active {
-    color: red;
+    color: ${({ theme }) => theme.colors.accent};
   }
 `;

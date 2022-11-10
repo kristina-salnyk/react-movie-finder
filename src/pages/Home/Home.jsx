@@ -1,33 +1,45 @@
-import { Heading } from './Home.styled';
+import { Title } from './Home.styled';
 import { getTrendingMovies } from '../../utils/api/getTrendingMovies';
-import MoviesList from '../../components/MoviesList/MoviesList';
 import { useEffect, useState } from 'react';
+import { MESSAGE_TYPES } from '../../constants';
+import MoviesList from '../../components/MoviesList';
+import Loader from '../../components/Loader';
+import Message from '../../components/Message';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
-  const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setError(null);
+
+    setIsLoading(true);
+
     (async () => {
       try {
         const data = await getTrendingMovies();
         setTrendingMovies(data.results);
       } catch (error) {
         setError(error);
+      } finally {
+        setIsLoading(false);
       }
     })();
   }, []);
 
   return (
-    <main>
-      <Heading>Trending today</Heading>
+    <section>
+      <Title>Trending today</Title>
 
       {trendingMovies.length > 0 && (
         <MoviesList items={trendingMovies}></MoviesList>
       )}
 
-      {error && <p>Something went wrong. Try again later.</p>}
-    </main>
+      {isLoading && <Loader />}
+
+      {!isLoading && error && <Message type={MESSAGE_TYPES.ERROR} />}
+    </section>
   );
 };
 

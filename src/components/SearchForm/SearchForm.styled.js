@@ -6,7 +6,7 @@ export const Form = styled.form`
   align-items: center;
   max-width: 600px;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: ${({ theme }) => theme.radii.normal};
   border: 1px solid lightgrey;
   overflow: hidden;
 `;

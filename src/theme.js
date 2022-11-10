@@ -4,10 +4,12 @@ export const theme = {
     white: '#fff',
     text: '#2a2a2a',
     background: '#fff',
-    primary: '#ccbb00',
+    primary: '#93969a',
     secondary: '#da6714',
-    accent: '#ff5722',
+    accent: '#FF0000',
     muted: '#f6f6f6',
+    overlay: 'rgba(255, 255, 255, 0.5)',
+    border: '#eae9e9',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {
@@ -39,4 +41,9 @@ export const theme = {
     normal: '4px',
     round: '50%',
   },
+  shadows: [
+    'rgba(0, 0, 0, 0.24) 0 3px 8px',
+    'rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 2px 6px 2px',
+    'rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px',
+  ],
 };

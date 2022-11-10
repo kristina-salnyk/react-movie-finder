@@ -1,32 +1,35 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const Container = styled.section`
-  padding: 0 20px;
-`;
-
 export const Controls = styled.div`
-  padding: 5px 0;
+  padding: ${({ theme }) => theme.space[3]}px ${({ theme }) => theme.space[4]}px;
 
   > a {
-    padding: 8px 15px;
+    padding: ${({ theme }) => theme.space[3]}px
+      ${({ theme }) => theme.space[4]}px;
     width: 80px;
+
     font-weight: 500;
-    color: black;
     text-decoration: none;
-    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0,
-      rgba(60, 64, 67, 0.15) 0 2px 6px 2px;
+
+    color: ${({ theme }) => theme.colors.black};
+    box-shadow: ${({ theme }) => theme.shadows[1]};
+
     display: flex;
     align-items: end;
-    gap: 5px;
+    gap: ${({ theme }) => theme.space[2]}px;
   }
 `;
 
-export const Description = styled.div`
-  padding: 10px 0;
+export const Details = styled.div`
+  padding: ${({ theme }) => theme.space[4]}px;
+`;
+
+export const MovieCard = styled.div`
+  padding: ${({ theme }) => theme.space[4]}px;
   display: flex;
   flex-wrap: nowrap;
-  gap: 30px;
+  gap: ${({ theme }) => theme.space[5]}px;
   text-decoration: none;
 `;
 
@@ -34,20 +37,22 @@ export const Poster = styled.img`
   width: 300px;
   height: 450px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.radii.normal};
 `;
 
 export const Title = styled.h1`
-  font-size: 28px;
+  margin-top: ${({ theme }) => theme.space[3]}px;
+  font-size: ${({ theme }) => theme.fontSizes.l};
   font-style: normal;
 `;
 
 export const Overview = styled.div`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fontSizes.m};
   color: black;
 
   > p {
-    margin: 15px 0 40px;
+    margin: ${({ theme }) => theme.space[4]}px 0
+      ${({ theme }) => theme.space[5]}px;
   }
 `;
 
@@ -57,15 +62,16 @@ export const Tabs = styled.div`
 
 export const Link = styled(NavLink)`
   padding: 10px 0;
-  color: black;
+  width: 80px;
+
   font-weight: 500;
   text-decoration: none;
   text-align: center;
-  width: 80px;
-  border: 1px solid #eae9e9;
+
+  color: ${({ theme }) => theme.colors.black};
+  border: 1px solid ${({ theme }) => theme.colors.border};
 
   &.active {
-    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0,
-      rgba(60, 64, 67, 0.15) 0 2px 6px 2px;
+    box-shadow: ${({ theme }) => theme.shadows[1]};
   }
 `;

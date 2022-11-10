@@ -1,29 +1,26 @@
 import styled from 'styled-components';
 
 export const ReviewsList = styled.ul`
-  padding: 15px;
+  padding: ${({ theme }) => theme.space[4]}px;
   display: grid;
-  grid-gap: 20px;
+  grid-gap: ${({ theme }) => theme.space[4]}px;
   list-style: none;
 `;
 
 export const ReviewItem = styled.div`
-  padding: 10px 20px 20px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
-  border-radius: 4px;
+  padding: ${({ theme }) => theme.space[2]}px ${({ theme }) => theme.space[4]}px
+    ${({ theme }) => theme.space[4]}px;
+  box-shadow: ${({ theme }) => theme.shadows[2]};
+  border-radius: ${({ theme }) => theme.radii.normal};
 `;
 
 export const Title = styled.h2`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fontSizes.m};
   font-style: normal;
 `;
 
 export const Description = styled.div`
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
   font-style: italic;
-  color: black;
-
-  > p {
-    margin: 10px 0;
-  }
+  color: ${({ theme }) => theme.colors.black};
 `;

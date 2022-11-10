@@ -5,7 +5,7 @@ export const getSearchingMovie = async searchQuery => {
   const config = {
     params: {
       query: searchQuery,
-      page: 1,
+      page: REQUEST_CONFIGS.page,
       include_adult: REQUEST_CONFIGS.includeAdult,
     },
   };

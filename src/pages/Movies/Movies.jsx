@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react';
-import SearchForm from '../../components/SearchForm/SearchForm';
-import { getSearchingMovie } from '../../utils/api/getSearchingMovie';
-import MoviesList from '../../components/MoviesList/MoviesList';
 import { useSearchParams } from 'react-router-dom';
+import SearchForm from '../../components/SearchForm';
+import { getSearchingMovie } from '../../utils/api/getSearchingMovie';
+import MoviesList from '../../components/MoviesList';
+import Loader from '../../components/Loader';
+import Message from '../../components/Message';
+import getMessageType from '../../utils/getMessageType';
 
 const Movies = () => {
   const [searchingMovies, setSearchingMovies] = useState([]);
-  const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
 
   useEffect(() => {
     if (searchQuery.trim() === '') return;
+
+    setIsLoading(true);
 
     (async () => {
       try {
@@ -19,8 +26,15 @@ const Movies = () => {
         setSearchingMovies(data.results);
       } catch (error) {
         setError(error);
+      } finally {
+        setIsLoading(false);
       }
     })();
+
+    return () => {
+      setError(null);
+      setSearchingMovies([]);
+    };
   }, [searchQuery]);
 
   const setSearchQuery = query => {
@@ -28,16 +42,25 @@ const Movies = () => {
     setSearchParams(newParams);
   };
 
+  const params = {
+    hasError: error,
+    hasResults: searchingMovies.length > 0,
+    hasSearchQuery: searchQuery.trim() !== '',
+  };
+  const messageType = getMessageType(params);
+
   return (
-    <main>
+    <section>
       <SearchForm searchQuery={searchQuery} onSubmit={setSearchQuery} />
 
       {searchingMovies.length > 0 && (
         <MoviesList items={searchingMovies}></MoviesList>
       )}
 
-      {error && <p>Something went wrong. Try again later.</p>}
-    </main>
+      {isLoading && <Loader />}
+
+      {!isLoading && messageType && <Message type={messageType} />}
+    </section>
   );
 };
 

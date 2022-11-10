@@ -4,7 +4,7 @@ import { REQUEST_URL, REQUEST_CONFIGS } from '../../constants';
 export const getTrendingMovies = async () => {
   const config = {
     params: {
-      page: 1,
+      page: REQUEST_CONFIGS.page,
     },
   };
 

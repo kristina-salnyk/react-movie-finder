@@ -1,20 +1,26 @@
 import imageNotFound from 'images/image-not-found.png';
-import { Card, Description, Profile, Title } from './CastItem.styled';
+import { Item, Description, Profile, Title } from './CastItem.styled';
+import { IMAGE_URL } from '../../constants';
+import PropTypes from 'prop-types';
 
-const MovieItem = ({ profilePath, name, character }) => {
-  const profile = profilePath
-    ? `https://image.tmdb.org/t/p/w500${profilePath}`
-    : imageNotFound;
+const CastItem = ({ profilePath, name, character }) => {
+  const profile = profilePath ? `${IMAGE_URL}${profilePath}` : imageNotFound;
 
   return (
-    <Card>
+    <Item>
       <Profile src={profile} alt={name} />
       <Description>
         <Title>{name}</Title>
         <p>Character: {character}</p>
       </Description>
-    </Card>
+    </Item>
   );
 };
 
-export default MovieItem;
+export default CastItem;
+
+CastItem.propTypes = {
+  character: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  profilePath: PropTypes.string,
+};

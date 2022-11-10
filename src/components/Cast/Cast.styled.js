@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const CastList = styled.ul`
-  padding: 15px;
+  padding: ${({ theme }) => theme.space[4]}px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: ${({ theme }) => theme.space[4]}px;
   list-style: none;
 `;
